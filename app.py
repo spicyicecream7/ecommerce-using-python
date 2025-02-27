@@ -4,14 +4,14 @@ import sqlite3
 import os
 import bcrypt
 from PIL import Image, ImageTk  # Import PIL for image handling
-import Dashboard
+import dashboard
 
 
 # Database Connection
 def connect_db():
     conn = sqlite3.connect("ecommerce.db")
     cursor = conn.cursor()
-    cursor.execute(""" 
+    cursor.execute("""
         CREATE TABLE IF NOT EXISTS users (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             username TEXT UNIQUE,
@@ -102,7 +102,7 @@ class LoginApp:
         if user and bcrypt.checkpw(password, user[0]):
             messagebox.showinfo("Login Successful", "Welcome to Eazy-Shop!")
             self.root.destroy()  # Close login window
-            Dashboard.Dashboard(username)  # Open Dashboard
+            dashboard.Dashboard(username)  # Open Dashboard
         else:
             messagebox.showerror("Login Failed", "Invalid email or password")
 
